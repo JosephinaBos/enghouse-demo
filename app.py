@@ -7,7 +7,7 @@ static_path = os.path.join(current_path, 'static')
 
 @route("/")
 def hello_world():
-    return static_file('vizolution.html', root=static_path)
+    return static_file('enghouse.html', root=static_path)
 
 @route("/UihrciyWuERWuomBzHnpyt")
 def serve_form():
