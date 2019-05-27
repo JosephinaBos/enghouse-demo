@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Enghouse Co-browsing</title>
+    <style>
+        html,body {
+            background-color: #dedede;
+            -webkit-background-size: auto; /* For WebKit*/
+            -moz-background-size: auto;    /* Mozilla*/
+            -o-background-size: auto;      /* Opera*/
+            background-size: auto;         /* Generic*/
+        }
+
+        h1 {
+            color: #003591;
+            font-family: sans-serif;
+        }
+
+        #form {
+            margin-top: 100px;
+            border-radius: 25px;
+            background-color: white;
+            padding: 30px;
+            width: 400px;
+            height: 400px;
+
+        }
+
+        #sessidtarget {
+            position: relative;
+            color: #72b5cc;
+            top: 100px;
+        }
+
+        .slabtexted {
+            margin-top: 150px;
+        }
+    </style>
+
+</head>
+
+<body class="slabtexted">
+
+    <center>
+        <h1>Welcome to Enghouse Co-browsing</h1>
+        <div id="form">
+
+    <img itemprop="logo" src="static/enghouse-logo.png" alt="Enghouse®" style="width: 300px; margin-top: 55px;">
+
+                    <h2 id="sessidtarget" style="font-family: sans-serif;">Please wait...</h2>
+        </div>
+
+
+<script>
+(function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
+l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
+l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
+(window,document,'script','Surfly');
+
+
+var settings={widgetkey:'2f2d4ea6caff4b0fa4967d854b02c388', hide_until_agent_joins: true, follower_redirect_url: 'https://enghouse-cobrowse.herokuapp.com/UihrciyWuERWuomBzHnpyt'};
+window.addEventListener('DOMContentLoaded', function() {
+  Surfly.init(settings, function(init) {
+        if (init.success) {
+          if(!Surfly.currentSession){
+              Surfly.session()
+                .on('session_started', function(session, event) {
+                   // send the pin to the current session
+                   document.getElementById("sessidtarget").innerText = "Your session code is: "+ session.pin;
+                 })
+                .on('viewer_joined', function(session, event) {
+                    // if a viewer joins and they are the first then redirect to home page
+                    if(event.count==1){
+                      session.relocate("https://www.enghouse.com/");
+                    }
+                }).startLeader();
+          }
+        }
+   });
+});
+  </script>
+
+</body>
+</html>
+
